@@ -25,7 +25,10 @@ describe('Park', function() {
     assert.strictEqual(actual, 10);
   });
 
-  it('should have a collection of dinosaurs'); // ?
+  it('should have a collection of dinosaurs', function () {
+    const actual = park.dinosaurs;
+    assert.deepStrictEqual(actual, []);
+  });
 
   it('should be able to add a dinosaur to its collection', function(){
     park.add(dino1);
@@ -49,15 +52,15 @@ describe('Park', function() {
     assert.strictEqual(dino3, park.findMostPopular());
   });
 
-  // it('should be able to find all dinosaurs of a particular species', function(){
-  //   park.add(dino1);
-  //   park.add(dino2);
-  //   park.add(dino3);
-  //   park.add(dino4);
-  //   park.add(dino5);
-  //   const actual = [dino4, dino5];
-  //   assert.strictEqual(actual, park.findAllDinosOfGivenSpecies('Omnivosaurus'));
-  // });
+  it('should be able to find all dinosaurs of a particular species', function(){
+    park.add(dino1);
+    park.add(dino2);
+    park.add(dino3);
+    park.add(dino4);
+    park.add(dino5);
+    const actual = [dino4, dino5];
+    assert.strictEqual(actual, park.findAllDinosOfGivenSpecies('Omnivosaurus'));
+  });
 
   it('should be able to calculate the total number of visitors per day', function(){
     park.add(dino1);
@@ -92,8 +95,7 @@ describe('Park', function() {
     park.add(dino3);
     park.add(dino4);
     park.add(dino5);
-    assert.strictEqual(park.dinotypes, { 'carnivore': 2, 'herbivore': 1, 'omnivore': 2 });
-
+    assert.equal(park.formatDinoTypes(), { 'carnivore': 2, 'herbivore': 1, 'omnivore': 2 });
   });
 
 

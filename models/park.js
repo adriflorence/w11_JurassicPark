@@ -3,7 +3,7 @@ const Park = function (name, price) {
   this.price = price;
   this.dinosaurs = []; // list
   this.dinotypes = []; // hash
-  // dinotypes: ({type: 'carnivore', quantity: 1})
+  // dinotypes: [{type: 'carnivore', quantity: 1}, {type: 'herbivore', quantity: 2}]
   // dino = new Dinosaur('T-rex', 'carnivore', 47);
 }
 
@@ -46,7 +46,7 @@ Park.prototype.remove = function(dinoToRemove) {
 
 Park.prototype.findMostPopular = function(){
   let mostPopularDino = this.dinosaurs[0]; // very first dino in LIST
-  for(var dinosaur of this.dinosaurs) {
+  for(let dinosaur of this.dinosaurs) {
     if(dinosaur.guestsAttractedPerDay > mostPopularDino.guestsAttractedPerDay){
       mostPopularDino = dinosaur;
     }
@@ -56,7 +56,7 @@ Park.prototype.findMostPopular = function(){
 
 Park.prototype.findAllDinosOfGivenSpecies = function(speciesToFind){
   let dinosOfSpecies = [];
-  for(var dinosaur of this.dinosaurs) { // var ?
+  for(let dinosaur of this.dinosaurs) { // var / const ?
     if(dinosaur.species === speciesToFind){
       dinosOfSpecies.push(dinosaur);
     }
@@ -66,7 +66,7 @@ Park.prototype.findAllDinosOfGivenSpecies = function(speciesToFind){
 
 Park.prototype.calculateVisitorsPerDay = function(){
   let numberOfVisitors = 0;
-  for(var dinosaur of this.dinosaurs) {
+  for(let dinosaur of this.dinosaurs) {
     numberOfVisitors += dinosaur.guestsAttractedPerDay;
   }
   return numberOfVisitors;
@@ -78,8 +78,25 @@ Park.prototype.calculateVisitorsPerYear = function(){
 }
 
 Park.prototype.calculateRevenueForYear = function(){
-  let visitorsPerYear = this.calculateRevenueForYear();
-  return visitorsPerYear * this.price;
+  let visitorsPerYear = this.calculateVisitorsPerYear();
+  return (visitorsPerYear * this.price);
+}
+
+Park.prototype.formatDinoTypes = function(){
+  let prettyHash = {'carnivore': 0, 'herbivore': 0, 'omnivore': 0};
+  for(let dinosaur of this.dinosaurs) {
+    if(dinosaur.diet == 'carnivore') {
+      prettyHash['carnivore'] += 1;
+    } else if(dinosaur.diet === 'herbivore') {
+      prettyHash['herbivore'] += 1;
+    } else if(dinosaur.diet === 'omnivore') {
+      prettyHash['omnivore'] += 1;
+    }
+    // else {
+    //   prettyHash[newDinoDiet] = 0;
+    // }
+  }
+  return prettyHash;
 }
 
 
