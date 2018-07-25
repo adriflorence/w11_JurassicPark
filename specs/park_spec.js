@@ -59,7 +59,7 @@ describe('Park', function() {
     park.add(dino4);
     park.add(dino5);
     const actual = [dino4, dino5];
-    assert.strictEqual(actual, park.findAllDinosOfGivenSpecies('Omnivosaurus'));
+    assert.deepStrictEqual(actual, park.findAllDinosOfGivenSpecies('Omnivosaurus'));
   });
 
   it('should be able to calculate the total number of visitors per day', function(){
@@ -71,7 +71,7 @@ describe('Park', function() {
     assert.strictEqual(park.calculateVisitorsPerDay(), 170);
   });
 
-  it('should be able to calculate the total number of visitors per day', function(){
+  it('should be able to calculate the total number of visitors per year', function(){
     park.add(dino1);
     park.add(dino2);
     park.add(dino3);
@@ -95,7 +95,7 @@ describe('Park', function() {
     park.add(dino3);
     park.add(dino4);
     park.add(dino5);
-    assert.equal(park.formatDinoTypes(), { 'carnivore': 2, 'herbivore': 1, 'omnivore': 2 });
+    assert.deepStrictEqual(park.formatDinoTypes(), { 'carnivore': 2, 'herbivore': 1, 'omnivore': 2 });
   });
 
 
