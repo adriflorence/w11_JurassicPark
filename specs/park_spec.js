@@ -37,6 +37,7 @@ describe('Park', function() {
     park.add(dino1);
     park.remove(dino1);
     assert.strictEqual(park.dinosaurs.length, 0);
+    assert.strictEqual(park.dinotypes[0].quantity, 0);
   });
 
   it('should be able to find the dinosaur that attracts the most visitors', function(){
@@ -44,18 +45,55 @@ describe('Park', function() {
     park.add(dino2);
     park.add(dino3);
     park.add(dino4);
-    const actual = park.dinosaurs[0];
+    park.add(dino5);
     assert.strictEqual(dino3, park.findMostPopular());
   });
 
-  it('should be able to find all dinosaurs of a particular species', function(){
+  // it('should be able to find all dinosaurs of a particular species', function(){
+  //   park.add(dino1);
+  //   park.add(dino2);
+  //   park.add(dino3);
+  //   park.add(dino4);
+  //   park.add(dino5);
+  //   const actual = [dino4, dino5];
+  //   assert.strictEqual(actual, park.findAllDinosOfGivenSpecies('Omnivosaurus'));
+  // });
+
+  it('should be able to calculate the total number of visitors per day', function(){
     park.add(dino1);
     park.add(dino2);
     park.add(dino3);
     park.add(dino4);
     park.add(dino5);
-    const actual = [dino4, dino5];
-    assert.strictEqual(actual, park.findAllDinosOfGivenSpecies('Omnivosaurus'));
+    assert.strictEqual(park.calculateVisitorsPerDay(), 170);
+  });
+
+  it('should be able to calculate the total number of visitors per day', function(){
+    park.add(dino1);
+    park.add(dino2);
+    park.add(dino3);
+    park.add(dino4);
+    park.add(dino5);
+    assert.strictEqual(park.calculateVisitorsPerYear(), 62050);
+  });
+
+  it('should be able to calculate revenue for a year', function(){
+    park.add(dino1);
+    park.add(dino2);
+    park.add(dino3);
+    park.add(dino4);
+    park.add(dino5);
+    assert.strictEqual(park.calculateRevenueForYear(), 620500);
+  });
+
+  it('should be able to return hash of diet types', function(){
+    park.add(dino1);
+    park.add(dino2);
+    park.add(dino3);
+    park.add(dino4);
+    park.add(dino5);
+    assert.strictEqual(park.dinotypes, { 'carnivore': 2, 'herbivore': 1, 'omnivore': 2 });
+
   });
 
 
